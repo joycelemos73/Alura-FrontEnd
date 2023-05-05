@@ -22,12 +22,12 @@ form.addEventListener("submit", (evento) => {
     if(existe) {
         itemAtual.id = existe.id;
         atualizaElementos(itemAtual);
+        itens[existe.id] = itemAtual;
 
     } else {
         itemAtual.id = itens.length;
         criaElementos(itemAtual);
         itens.push(itemAtual);
-
     }
 
     localStorage.setItem("itens", JSON.stringify(itens));
@@ -41,10 +41,10 @@ function criaElementos(item) {
     novoItem.classList.add("item");
 
     const numeroItem = document.createElement('strong');
-    numeroItem.dataset.id = item.id;
     numeroItem.innerHTML = item.quantidade;
-
+    numeroItem.dataset.id = item.id;
     novoItem.appendChild(numeroItem);
+
     novoItem.innerHTML += item.nome;
 
     lista.appendChild(novoItem);
@@ -52,5 +52,5 @@ function criaElementos(item) {
 }
 
 function atualizaElementos(item) {
-    document.querySelector("[data-id='" + item.id + "']").innerHTML = item.quantidade;
+    document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade;
 }
