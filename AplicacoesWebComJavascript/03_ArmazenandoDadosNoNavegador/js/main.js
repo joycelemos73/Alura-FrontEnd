@@ -18,5 +18,4 @@ function criaElementos(nome, quantidade) {
     novoItem.innerHTML += nome;
 
     lista.appendChild(novoItem);
-    console.log(lista);
 }
