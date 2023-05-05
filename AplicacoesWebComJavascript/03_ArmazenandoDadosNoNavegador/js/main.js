@@ -12,14 +12,23 @@ form.addEventListener("submit", (evento) => {
     const nome = evento.target.elements['nome'];
     const quantidade = evento.target.elements['quantidade'];
 
+    const existe = itens.find(elemento => elemento.nome === nome.value);
+
     const itemAtual = {
         "nome": nome.value,
         "quantidade": quantidade.value
     }
 
-    criaElementos(itemAtual);
+    if(existe) {
+        itemAtual.id = existe.id;
+        atualizaElementos(itemAtual);
 
-    itens.push(itemAtual);
+    } else {
+        itemAtual.id = itens.length;
+        criaElementos(itemAtual);
+        itens.push(itemAtual);
+
+    }
 
     localStorage.setItem("itens", JSON.stringify(itens));
 
@@ -32,6 +41,7 @@ function criaElementos(item) {
     novoItem.classList.add("item");
 
     const numeroItem = document.createElement('strong');
+    numeroItem.dataset.id = item.id;
     numeroItem.innerHTML = item.quantidade;
 
     novoItem.appendChild(numeroItem);
@@ -39,4 +49,8 @@ function criaElementos(item) {
 
     lista.appendChild(novoItem);
 
+}
+
+function atualizaElementos(item) {
+    document.querySelector("[data-id='" + item.id + "']").innerHTML = item.quantidade;
 }
