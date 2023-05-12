@@ -34,7 +34,7 @@
   • script.js: contains the JavaScript code that handles the piano's functionality.<br /><br />
 </p>
 
-<h3>:laptop: Usage</h3>
+<h3>💻 Usage</h3>
 <p>
   Feel free to use and modify this code for your own projects.<br />
 </p>
