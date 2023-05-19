@@ -1,7 +1,13 @@
-async function buscaEndereco() {
-    var consultaCep = await fetch('https://viacep.com.br/ws/01001000/json/');
-    var consultaCepConvertida = await consultaCep.json();
-    console.log(consultaCepConvertida);
+async function buscaEndereco(cep) {
+    try {
+        var consultaCep = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        var consultaCepConvertida = await consultaCep.json();
+        if (consultaCepConvertida.erro){
+            throw Error('CEP não existente!');
+        }
+        console.log(consultaCepConvertida);
+        return consultaCepConvertida;
+    } catch (erro) {
+        console.log(erro)
+    }
 }
-
-buscaEndereco();
